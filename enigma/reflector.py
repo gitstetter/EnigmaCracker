@@ -14,8 +14,8 @@ class Reflector:
     def __setattr__(self, name: str, value) -> None:
         self.__dict__[name] = value
 
-    def __eq__(self, rotor) -> bool:
-        return self.name == rotor.name
+    def __eq__(self, reflector) -> bool:
+        return self.name == reflector.name
 
     def encipher(self, key: str):
         assert type(key) == str
