@@ -3,20 +3,20 @@ class Rotor:
     Represents a Rotor  
     """
 
-    def __init__(self, wiring:str=None, name:str=None, notchPosition:int=None, rotorPosition:int=None):
+    def __init__(self, wiring:str=None, name:str=None, notch_position:str=None, rotor_position:int=0):
         if wiring != None:
             self.wiring = wiring
         else:
             self.wiring =  "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         self.name = name
-        self.notchPosition = notchPosition
-        self.rotorPosition = rotorPosition
+        self.notch_position = notch_position
+        self.rotor_position = rotor_position
         
-        self.rwiring = ["0"] * 26
+        self.rev_wiring = ["0"] * 26
         for i in range(0, len(self.wiring)):
             index = ord(self.wiring[i])- ord("A")
-            self.rwiring[index] = chr(ord("A") + i)
-        self.rwiring = ''.join(self.rwiring)
+            self.rev_wiring[index] = chr(ord("A") + i)
+        self.rev_wiring = ''.join(self.rev_wiring)
     
     def __setattr__(self, name: str, value) -> None:
         self.__dict__[name] = value
@@ -31,7 +31,6 @@ class Rotor:
         assert key in "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         index = (ord(key) - ord("A"))
         letter = self.wiring[index]
-        print("letter forward: "+letter)
         return letter
     
     def encipher_backwards(self, key: str):
@@ -40,16 +39,16 @@ class Rotor:
         key = key.upper()
         assert key in "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         index = (ord(key) - ord("A"))
-        letter = self.rwiring[index]
-        print("letter backwards: "+letter)
-        print(self.rwiring)
-        print('wiring:  '+self.wiring)
+        letter = self.rev_wiring[index]
         return letter
+    
+    def notch(self):
+        self.rotor_position = (self.rotor_position + 1 ) %27
 
-ROTOR_I = Rotor(wiring="EKMFLGDQVZNTOWYHXUSPAIBRCJ", name="Rotor_I", rotorPosition=1, notchPosition=1)
-ROTOR_II = Rotor(wiring="AJDKSIRUXBLHWTMCQGZNPYFVOE", name="Rotor_II", rotorPosition=1, notchPosition=1)
-ROTOR_III = Rotor(wiring="BDFHJLCPRTXVZNYEIWGAKMUSQO", name="Rotor_III", rotorPosition=1, notchPosition=1)
-ROTOR_IV = Rotor(wiring="ESOVPZJAYQUIRHXLNFTGKDCMWB", name="Rotor_IV", rotorPosition=1, notchPosition=1)
-ROTOR_V = Rotor(wiring="VZBRGITYUPSDNHLXAWMJQOFECK", name="Rotor_V", rotorPosition=1, notchPosition=1)
+ROTOR_I = Rotor(wiring="EKMFLGDQVZNTOWYHXUSPAIBRCJ", name="Rotor_I", rotor_position=0, notch_position='R')
+ROTOR_II = Rotor(wiring="AJDKSIRUXBLHWTMCQGZNPYFVOE", name="Rotor_II", rotor_position=0, notch_position='F')
+ROTOR_III = Rotor(wiring="BDFHJLCPRTXVZNYEIWGAKMUSQO", name="Rotor_III", rotor_position=0, notch_position='W')
+ROTOR_IV = Rotor(wiring="ESOVPZJAYQUIRHXLNFTGKDCMWB", name="Rotor_IV", rotor_position=0, notch_position='K')
+ROTOR_V = Rotor(wiring="VZBRGITYUPSDNHLXAWMJQOFECK", name="Rotor_V", rotor_position=0, notch_position='A')
 
 
