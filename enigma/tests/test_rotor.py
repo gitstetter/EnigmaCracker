@@ -23,17 +23,17 @@ def test_ROTORI_encipher_back_TwoStr():
         ROTOR_I.encipher_backwards('AA')
 
 def test_ROTORI_notch():
-    ROTOR_I.rotor_position = 0
+    ROTOR_I.rotor_position = 'A'
     ROTOR_I.notch()
-    assert ROTOR_I.rotor_position == 1
+    assert ROTOR_I.rotor_position == 'B'
     ROTOR_I.notch()
-    assert ROTOR_I.rotor_position == 2
+    assert ROTOR_I.rotor_position == 'C'
 
 def test_ROTORI_notch_over():
-    ROTOR_I.rotor_position = 25
+    ROTOR_I.rotor_position = 'Y'
     ROTOR_I.notch()
-    assert ROTOR_I.rotor_position == 26
+    assert ROTOR_I.rotor_position == 'Z'
     ROTOR_I.notch()
-    assert ROTOR_I.rotor_position == 0
+    assert ROTOR_I.rotor_position == 'A'
     ROTOR_I.notch()
-    assert ROTOR_I.rotor_position == 1
+    assert ROTOR_I.rotor_position == 'B'
