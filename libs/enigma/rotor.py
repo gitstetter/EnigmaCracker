@@ -3,13 +3,14 @@ class Rotor:
     Represents a Rotor that maps characters pairwise and turns once the rotor to the right notches
     """
 
-    def __init__(self, wiring:str=None, name:str=None, notch_position:str=None, rotor_position:str='A'):
+    def __init__(self, wiring:str=None, name:str=None, notch_position:str=None, ring_position:str='A', rotor_position:str='A'):
         if wiring != None:
             self.wiring = wiring
         else:
             self.wiring =  "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         self.name = name
         self.notch_position = notch_position.upper()
+        self.ring_position = ring_position.upper()
         self.rotor_position = rotor_position.upper()
         
         self.rev_wiring = ["0"] * 26
@@ -44,6 +45,9 @@ class Rotor:
     
     def notch(self):
         self.rotor_position = chr((ord(self.rotor_position) + 1 - ord("A")) % 26 + ord("A"))
+
+    def is_in_turnover_pos(self):
+        return chr((ord(self.rotor_position) + 1 - ord("A")) % 26 + ord("A")) in self.notch_position
 
 
 ROTOR_I = Rotor(wiring="EKMFLGDQVZNTOWYHXUSPAIBRCJ", name="Rotor_I", rotor_position='A', notch_position='R')
