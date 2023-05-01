@@ -31,6 +31,8 @@ class Rotor:
         self.rotor_position = chr((ord(self.rotor_position) + self.ring_position-1 - ord("A")) % 26 + ord("A"))
 
     def set_ring_position(self, ring_position:int = 1):
+        assert type(ring_position) is int
+        assert ring_position < 27
         self.ring_position = ring_position
         self.handle_ring_settings()
 
