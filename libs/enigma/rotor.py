@@ -25,13 +25,16 @@ class Rotor:
     def __eq__(self, rotor) -> bool:
         return self.name == rotor.name
 
-    def handle_ring_settings(self):
+    def handle_ring_settings(self) -> None:
         assert type(self.ring_position) is int
         assert self.ring_position < 27
         self.rotor_position = chr((ord(self.rotor_position) + self.ring_position-1 - ord("A")) % 26 + ord("A"))
 
+    def handle_state(self):
+        pass
+
     def encipher_forward(self, key: str) -> str:
-        assert type(key) == str
+        assert type(key) is str
         assert len(key) == 1
         key = key.upper()
         assert key in "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -40,7 +43,7 @@ class Rotor:
         return letter
     
     def encipher_backwards(self, key: str) -> str:
-        assert type(key) == str
+        assert type(key) is str
         assert len(key) == 1
         key = key.upper()
         assert key in "ABCDEFGHIJKLMNOPQRSTUVWXYZ"

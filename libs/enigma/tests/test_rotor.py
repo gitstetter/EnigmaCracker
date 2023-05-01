@@ -6,11 +6,11 @@ def test_ROTORI_encipher_left_right():
     assert ROTOR_I.encipher_backwards('K')=='B'
     assert ROTOR_I.encipher_forward('B')=='K'
 
-def test_ROTORI_encipherInt():
+def test_ROTORI_encipher_int():
     with pytest.raises(AssertionError):
         ROTOR_I.encipher_forward(9)
 
-def test_ROTORI_encipherTwoStr():
+def test_ROTORI_encipher_two_str():
     with pytest.raises(AssertionError):
         ROTOR_I.encipher_forward('AA')
 
@@ -62,7 +62,7 @@ def test_ROTORI_ringsetting_notch_over():
     ROTOR_I.handle_ring_settings()
     assert ROTOR_I.rotor_position == 'A'
 
-def test_ROTORI_ringsetting_invalid():
+def test_ROTORI_ringsetting_invalid_int():
     with pytest.raises(AssertionError):
         ROTOR_I.ring_position = 27
         ROTOR_I.rotor_position = 'Y'
@@ -71,7 +71,7 @@ def test_ROTORI_ringsetting_invalid():
 
 def test_ROTORI_ringsetting_invalid_type():
     with pytest.raises(AssertionError):
-        ROTOR_I.ring_position = 'A'
+        ROTOR_I.ring_position = 'Not supported'
         ROTOR_I.rotor_position = 'Y'
         ROTOR_I.handle_ring_settings()
         assert ROTOR_I.rotor_position == 'A'
