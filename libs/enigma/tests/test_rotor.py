@@ -37,3 +37,41 @@ def test_ROTORI_notch_over():
     assert ROTOR_I.rotor_position == 'A'
     ROTOR_I.notch()
     assert ROTOR_I.rotor_position == 'B'
+
+
+def test_ROTORI_ringsetting_1():
+    ROTOR_I.rotor_position = 'A'
+    ROTOR_I.handle_ring_settings()
+    assert ROTOR_I.rotor_position == 'A'
+
+def test_ROTORI_ringsetting_2():
+    ROTOR_I.ring_position = 2
+    ROTOR_I.rotor_position = 'A'
+    ROTOR_I.handle_ring_settings()
+    assert ROTOR_I.rotor_position == 'B'
+
+def test_ROTORI_ringsetting_26():
+    ROTOR_I.ring_position = 26
+    ROTOR_I.rotor_position = 'A'
+    ROTOR_I.handle_ring_settings()
+    assert ROTOR_I.rotor_position == 'Z'
+
+def test_ROTORI_ringsetting_notch_over():
+    ROTOR_I.ring_position = 3
+    ROTOR_I.rotor_position = 'Y'
+    ROTOR_I.handle_ring_settings()
+    assert ROTOR_I.rotor_position == 'A'
+
+def test_ROTORI_ringsetting_invalid():
+    with pytest.raises(AssertionError):
+        ROTOR_I.ring_position = 27
+        ROTOR_I.rotor_position = 'Y'
+        ROTOR_I.handle_ring_settings()
+        assert ROTOR_I.rotor_position == 'A'
+
+def test_ROTORI_ringsetting_invalid_type():
+    with pytest.raises(AssertionError):
+        ROTOR_I.ring_position = 'A'
+        ROTOR_I.rotor_position = 'Y'
+        ROTOR_I.handle_ring_settings()
+        assert ROTOR_I.rotor_position == 'A'

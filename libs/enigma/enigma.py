@@ -1,26 +1,25 @@
-from rotor import ROTOR_I, ROTOR_II, ROTOR_III, ROTOR_IV, ROTOR_V
-from reflector import REFLECTOR_A, REFLECTOR_B, REFLECTOR_C
+from rotor import Rotor, ROTOR_I, ROTOR_II, ROTOR_III, ROTOR_IV, ROTOR_V
+from reflector import Reflector, REFLECTOR_A, REFLECTOR_B, REFLECTOR_C
 
 class Enigma:
     """Represents an Enigma machine.
     """
 
-    def __init__(self, reflector, rotor1, rotor2, rotor3, key="AAA", plugs="", ring="AAA"):
-        """Initialization of the Enigma machine."""
+    def __init__(self, reflector: Reflector, rotor1: Rotor, rotor2: Rotor, rotor3: Rotor, state="AAA", plugboard_settings: str="AA BB CC DD EE FF GG HH II JJ", ring="AAA"):
+
         self.reflector = reflector
         self.rotor1 = rotor1
         self.rotor2 = rotor2
         self.rotor3 = rotor3
 
-        self.rotor1.state = key[0]
-        self.rotor2.state = key[1]
-        self.rotor3.state = key[2]
+        self.rotor1.state = state[0]
+        self.rotor2.state = state[1]
+        self.rotor3.state = state[2]
         self.rotor1.ring = ring[0]
         self.rotor2.ring = ring[1]
         self.rotor3.ring = ring[2]
-        self.reflector.state = "A"
 
-        plugboard_settings = [(elem[0], elem[1]) for elem in plugs.split()]
+        plugboard_settings = [(plugpair[0], plugpair[1]) for plugpair in plugboard_settings.split(sep=' ')]
 
         alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         alpha_out = [" "] * 26
@@ -30,13 +29,10 @@ class Enigma:
             alpha_out[ord(k) - ord("A")] = v
             alpha_out[ord(v) - ord("A")] = k
 
-        try:
-            self.transtab = str.maketrans(alpha, "".join(alpha_out))
-        except:
-            # Python 2
-            from string import maketrans
+        
+        self.transtab = str.maketrans(alpha, "".join(alpha_out))
 
-            self.transtab = maketrans(alpha, "".join(alpha_out))
+
 
     def encipher(self, plaintext_in):
         """Encrypt 'plaintext_in'."""
