@@ -2,7 +2,7 @@ from enigma.plugboard import *
 import pytest
 
 
-def test_plugboard():
+def test_plugboard_correct_mapping():
     PLUGBOARD = Plugboard(plug_settings="AB FG DE")
     assert PLUGBOARD.map_plugs('A')=='B'
     assert PLUGBOARD.map_plugs('B')=='A'
