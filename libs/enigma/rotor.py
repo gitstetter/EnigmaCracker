@@ -1,13 +1,15 @@
+UPPERCASE_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
 class Rotor:
     """
-    Represents a Rotor that maps characters pairwise and turns once the rotor to the right notches
+    Represents a Rotor that maps characters pairwise and turns the rotor to the right notches
     """
 
     def __init__(self, wiring:str=None, name:str=None, ring_position:int=1, rotor_position:str='A', notch_position:str=None):
-        if wiring != None:
+        if wiring is not None:
             self.wiring = wiring
         else:
-            self.wiring =  "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            self.wiring =  UPPERCASE_LETTERS
         self.name = name
         self.notch_position = notch_position.upper()
         self.ring_position = ring_position
@@ -41,7 +43,7 @@ class Rotor:
         assert type(key) is str
         assert len(key) == 1
         key = key.upper()
-        assert key in "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        assert key in UPPERCASE_LETTERS
         index = (ord(key) - ord("A"))
         #Account for current rotor position
         rotor_shift = ord(self.rotor_position)%65
@@ -53,7 +55,7 @@ class Rotor:
         assert type(key) is str
         assert len(key) == 1
         key = key.upper()
-        assert key in "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        assert key in UPPERCASE_LETTERS
         index = (ord(key) - ord("A"))
         #Account for current rotor position
         rotor_shift = ord(self.rotor_position)%65

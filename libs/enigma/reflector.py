@@ -1,13 +1,15 @@
+UPPERCASE_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
 class Reflector:
     """
     Represents a reflector which directs current back through thr rotors
     """
 
-    def __init__(self, wiring=None, name=None):
+    def __init__(self, wiring:str=None, name:str=None):
         if wiring != None:
             self.wiring = wiring
         else:
-            self.wiring =  "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            self.wiring =  UPPERCASE_LETTERS
         self.name = name
 
     
@@ -21,10 +23,9 @@ class Reflector:
         assert type(key) == str
         assert len(key) == 1
         key = key.upper()
-        assert key in "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        assert key in UPPERCASE_LETTERS
         index = (ord(key) - ord("A"))
         letter = self.wiring[index]
-        # print("letter: "+letter)
         return letter
 
 
