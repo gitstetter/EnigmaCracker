@@ -1,7 +1,6 @@
 from enigma.rotor import *
 import pytest
 
-
 def test_ROTORI_encipher_forward():
     ROTOR_I.rotor_position = 'A'
     assert ROTOR_I.encipher_forward('B')=='K'
@@ -47,11 +46,11 @@ def test_ROTORI_encipher_two_str():
     with pytest.raises(AssertionError):
         ROTOR_I.encipher_forward('AA')
 
-def test_ROTORI_encipher_back_Int():
+def test_ROTORI_encipher_back_int():
     with pytest.raises(AssertionError):
         ROTOR_I.encipher_backwards(9)
 
-def test_ROTORI_encipher_back_TwoStr():
+def test_ROTORI_encipher_back_two_str():
     with pytest.raises(AssertionError):
         ROTOR_I.encipher_backwards('AA')
 
