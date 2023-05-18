@@ -25,19 +25,17 @@ class Rotor:
     def __eq__(self, rotor) -> bool:
         return self.name == rotor.name
 
-    def handle_ring_settings(self) -> None:
-        assert type(self.ring_position) is int
-        assert self.ring_position < 27
-        self.rotor_position = chr((ord(self.rotor_position) + self.ring_position-1 - ord("A")) % 26 + ord("A"))
-
     def set_ring_position(self, ring_position:int = 1):
         assert type(ring_position) is int
         assert ring_position < 27
         self.ring_position = ring_position
-        self.handle_ring_settings()
+        self.handle_ring_setting()
 
-    def handle_state(self):
-        pass
+    def handle_ring_setting(self) -> None:
+        assert type(self.ring_position) is int
+        assert self.ring_position < 27
+        self.rotor_position = chr((ord(self.rotor_position) + self.ring_position-1 - ord("A")) % 26 + ord("A"))
+
 
     def encipher_forward(self, key: str) -> str:
         assert type(key) is str
@@ -45,6 +43,9 @@ class Rotor:
         key = key.upper()
         assert key in "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         index = (ord(key) - ord("A"))
+        #Account for current rotor position
+        rotor_shift = ord(self.rotor_position)%65
+        index = (index + rotor_shift)%26
         letter = self.wiring[index]
         return letter
     
@@ -54,7 +55,11 @@ class Rotor:
         key = key.upper()
         assert key in "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         index = (ord(key) - ord("A"))
+        #Account for current rotor position
+        rotor_shift = ord(self.rotor_position)%65
+        index = (index + rotor_shift)%26
         letter = self.rev_wiring[index]
+        print(self.rev_wiring)
         return letter
     
     def notch(self) -> None:
