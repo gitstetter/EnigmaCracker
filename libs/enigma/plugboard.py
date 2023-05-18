@@ -8,14 +8,15 @@ class Plugboard:
     def __init__(self, plug_settings: str = "AA BB CC DD EE FF GG HH II JJ") -> None:
 
         self.plug_settings = [(pair[0].upper(), pair[1].upper()) for pair in plug_settings.split(' ')]
+
         assert len(self.plug_settings)<=10
+
         #check for duplicate values in settings
         for mapping_pair in self.plug_settings:
             temp=self.plug_settings.copy()
             temp.remove(mapping_pair)
             assert mapping_pair[0] not in str(temp)
             assert mapping_pair[1] not in str(temp)
-
 
         self.mapping = {letter:letter for letter in UPPERCASE_LETTERS}
 
