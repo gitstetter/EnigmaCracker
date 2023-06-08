@@ -24,6 +24,7 @@ class Plugboard:
             self.mapping.update({pair0:pair1})
             self.mapping.update({pair1:pair0})
 
+
     def map_plugs(self, key:str):
         return self.mapping[key]
 

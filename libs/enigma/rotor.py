@@ -9,7 +9,7 @@ class Rotor:
         if wiring is not None:
             self.wiring = wiring
         else:
-            self.wiring =  UPPERCASE_LETTERS
+            self.wiring = UPPERCASE_LETTERS
         self.name = name
         self.notch_position = notch_position.upper()
         self.ring_position = ring_position
@@ -24,14 +24,17 @@ class Rotor:
     def __setattr__(self, name: str, value) -> None:
         self.__dict__[name] = value
 
+
     def __eq__(self, rotor) -> bool:
         return self.name == rotor.name
+
 
     def set_ring_position(self, ring_position:int = 1):
         assert type(ring_position) is int
         assert ring_position < 27
         self.ring_position = ring_position
         self.handle_ring_setting()
+
 
     def handle_ring_setting(self) -> None:
         assert type(self.ring_position) is int
@@ -50,7 +53,8 @@ class Rotor:
         index = (index + rotor_shift)%26
         letter = self.wiring[index]
         return letter
-    
+
+
     def encipher_backwards(self, key: str) -> str:
         assert type(key) is str
         assert len(key) == 1
@@ -61,11 +65,12 @@ class Rotor:
         rotor_shift = ord(self.rotor_position)%65
         index = (index + rotor_shift)%26
         letter = self.rev_wiring[index]
-        print(self.rev_wiring)
         return letter
+
     
     def notch(self) -> None:
         self.rotor_position = chr((ord(self.rotor_position) + 1 - ord("A")) % 26 + ord("A"))
+
 
     def is_in_turnover_pos(self) -> bool:
         return chr((ord(self.rotor_position) + 1 - ord("A")) % 26 + ord("A")) in self.notch_position
