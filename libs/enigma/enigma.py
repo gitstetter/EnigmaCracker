@@ -9,61 +9,57 @@ class Enigma:
     Represents an Enigma machine.
     """
 
-    def __init__(self, reflector:Reflector, rotor1:Rotor, rotor2:Rotor, rotor3:Rotor, plugboard:Plugboard, rotor_states:str=None, ring_positions:str=None):
+    def __init__(self, reflector:Reflector, left_rotor:Rotor, middle_rotor:Rotor, right_rotor:Rotor, plugboard:Plugboard, rotor_states:str=None, ring_positions:str=None):
 
         self.reflector = reflector
-        self.rotor1 = rotor1
-        self.rotor2 = rotor2
-        self.rotor3 = rotor3
+        self.left_rotor = left_rotor
+        self.middle_rotor = middle_rotor
+        self.right_rotor = right_rotor
         self.plugboard = plugboard
         
         if rotor_states is not None:
-            self.rotor1.state = rotor_states[0]
-            self.rotor2.state = rotor_states[1]
-            self.rotor3.state = rotor_states[2]
+            self.left_rotor.state = rotor_states[0]
+            self.middle_rotor.state = rotor_states[1]
+            self.right_rotor.state = rotor_states[2]
 
         if ring_positions is not None:
-            self.rotor1.set_ring_position(ring_positions[0])
-            self.rotor2.set_ring_position(ring_positions[1])
-            self.rotor3.set_ring_position(ring_positions[2])
+            self.left_rotor.set_ring_position(ring_positions[0])
+            self.middle_rotor.set_ring_position(ring_positions[1])
+            self.right_rotor.set_ring_position(ring_positions[2])
 
-            self.rotor1.handle_ring_setting()
-            self.rotor2.handle_ring_setting()
-            self.rotor3.handle_ring_setting()
+            self.left_rotor.handle_ring_setting()
+            self.middle_rotor.handle_ring_setting()
+            self.right_rotor.handle_ring_setting()
 
 
-    def encipher(self, plaintext)->str:
+    def encipher(self, plain_text:str)->str:
         """
         Encrypt a message according to enigma setup
         """
-        plain_text = plaintext.upper()
+        plain_text = plain_text.upper()
         encoded_text = ""
         for char in plain_text:
             if char is " ":
                 encoded_text += char
                 continue
             assert char in UPPERCASE_LETTERS
-            if self.rotor2.is_in_turnover_pos():
-                self.rotor2.notch()
-                self.rotor3.notch()
-            elif self.rotor1.is_in_turnover_pos():
-                self.rotor2.notch()
-            self.rotor1.notch()
 
-            # if self.rotor1.is_in_turnover_pos():
-            #     self.rotor2.notch()
-            # if self.rotor2.is_in_turnover_pos():
-            #     self.rotor3.notch()
-            # self.rotor1.notch()
+            #Notching rotors
+            if self.middle_rotor.is_in_turnover_pos():
+                self.middle_rotor.notch()
+                self.left_rotor.notch()
+            elif self.right_rotor.is_in_turnover_pos():
+                self.middle_rotor.notch()
+            self.right_rotor.notch()
 
             temp = self.plugboard.map_plugs(char)
-            temp = self.rotor1.encipher_forward(temp)
-            temp = self.rotor2.encipher_forward(temp)
-            temp = self.rotor3.encipher_forward(temp)
+            temp = self.right_rotor.encipher_forward(temp)
+            temp = self.middle_rotor.encipher_forward(temp)
+            temp = self.left_rotor.encipher_forward(temp)
             temp = self.reflector.encipher(temp)
-            temp = self.rotor3.encipher_backwards(temp)
-            temp = self.rotor2.encipher_backwards(temp)
-            temp = self.rotor1.encipher_backwards(temp)
+            temp = self.left_rotor.encipher_backwards(temp)
+            temp = self.middle_rotor.encipher_backwards(temp)
+            temp = self.right_rotor.encipher_backwards(temp)
             temp = self.plugboard.map_plugs(temp)
             
             encoded_text += temp
@@ -76,5 +72,5 @@ class Enigma:
         Rotor 1: {}
         Rotor 2: {}
         Rotor 3: {}""".format(
-            self.reflector, self.rotor1, self.rotor2, self.rotor3
+            self.reflector, self.left_rotor, self.middle_rotor, self.right_rotor
         )
