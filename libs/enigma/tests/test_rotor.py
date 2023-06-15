@@ -1,6 +1,7 @@
 from enigma.rotor import *
 import pytest
 
+
 def test_ROTORI_encipher_forward():
     ROTOR_I.rotor_position = 'A'
     assert ROTOR_I.encipher_forward('B')=='K'
@@ -107,3 +108,7 @@ def test_ROTORI_ringsetting_invalid_type():
         ROTOR_I.rotor_position = 'Y'
         ROTOR_I.handle_ring_setting()
         assert ROTOR_I.rotor_position == 'A'
+
+def test_ROTORI_is_at_notch():
+    ROTOR_I.rotor_position = ROTOR_I.notch_position
+    assert ROTOR_I.is_in_turnover_pos()

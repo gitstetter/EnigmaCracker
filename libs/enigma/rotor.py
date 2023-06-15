@@ -73,7 +73,7 @@ class Rotor:
 
 
     def is_in_turnover_pos(self) -> bool:
-        return chr((ord(self.rotor_position) + 1 - ord("A")) % 26 + ord("A")) in self.notch_position
+        return self.rotor_position == self.notch_position
 
 
 ROTOR_I = Rotor(wiring="EKMFLGDQVZNTOWYHXUSPAIBRCJ", name="Rotor_I", ring_position=1, rotor_position='A', notch_position='R')
