@@ -112,6 +112,7 @@ def test_ROTORI_ringsetting_invalid_type():
 def test_ROTORI_ringsetting_encipher_forward():
     ROTOR_I.rotor_position = 'A'
     ROTOR_I.set_ring_position(2)
+    assert ROTOR_I.rotor_position=='B'
     assert ROTOR_I.encipher_forward('K')=='T'
     ROTOR_I.rotor_position = 'A'
     ROTOR_I.set_ring_position(26)
