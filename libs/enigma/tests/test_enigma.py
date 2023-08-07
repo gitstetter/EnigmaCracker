@@ -17,16 +17,16 @@ def EnigmaMachinePlain():
     return EnigmaMachinePlain
 
 @pytest.fixture
-def EnigmaMachineSettings():
-    EnigmaMachineSettings = Enigma(reflector=REFLECTOR_B, 
+def EnigmaMachineRotorPositions():
+    EnigmaMachineRotorPositions = Enigma(reflector=REFLECTOR_B, 
                         left_rotor=ROTOR_III, 
                         middle_rotor=ROTOR_II, 
                         right_rotor=ROTOR_I, 
-                        rotor_positions="A A A" ,
-                        ring_positions="5 7 1",
+                        rotor_positions="A B C" ,
+                        ring_positions="1 1 1",
                         plugboard=Plugboard()
                         )
-    return EnigmaMachineSettings
+    return EnigmaMachineRotorPositions
 
 
 def test_rotors_all_notching(EnigmaMachinePlain):
@@ -68,17 +68,17 @@ def test_middle_rotor_notching(EnigmaMachinePlain):
     assert EnigmaMachinePlain.middle_rotor.rotor_position =='G'
     assert EnigmaMachinePlain.right_rotor.rotor_position =='S'
 
-def test_encrypt_letter(EnigmaMachineSettings):
-    EnigmaMachineSettings.rotate()
+def test_encrypt_letter(EnigmaMachineRotorPositions):
+    EnigmaMachineRotorPositions.rotate()
     char = "A"
-    temp = EnigmaMachineSettings.plugboard.map_plugs(char)
-    temp = EnigmaMachineSettings.right_rotor.encipher_forward(temp)
+    temp = EnigmaMachineRotorPositions.plugboard.map_plugs(char)
+    temp = EnigmaMachineRotorPositions.right_rotor.encipher_forward(temp)
+    assert temp=='F'
+    temp = EnigmaMachineRotorPositions.middle_rotor.encipher_forward(temp)
     assert temp=='K'
-    temp = EnigmaMachineSettings.middle_rotor.encipher_forward(temp)
-    assert temp=='Q'
-    temp = EnigmaMachineSettings.left_rotor.encipher_forward(temp)
-    assert temp=='D'
-    temp = EnigmaMachineSettings.reflector.encipher(temp)
-    assert temp=='H'
+    temp = EnigmaMachineRotorPositions.left_rotor.encipher_forward(temp)
+    assert temp=='T' #break
+    temp = EnigmaMachineRotorPositions.reflector.encipher(temp)
+    assert temp=='Z'
 
             

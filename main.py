@@ -4,14 +4,14 @@ from libs.enigma.enigma import Enigma
 from libs.enigma.plugboard import Plugboard
 
 EnigmaMachine2 = Enigma(reflector=REFLECTOR_B, 
-                       left_rotor=ROTOR_I, 
+                       left_rotor=ROTOR_III, 
                        middle_rotor=ROTOR_II, 
-                       right_rotor=ROTOR_III, 
+                       right_rotor=ROTOR_I, 
                        rotor_positions="A A A" ,
                        ring_positions="5 7 1",
                        plugboard=Plugboard()
                        )
 
-x=EnigmaMachine2.encipher('E')
+x=EnigmaMachine2.encipher('A')
 
 print(x)
