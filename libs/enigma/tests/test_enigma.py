@@ -5,8 +5,8 @@ from enigma.enigma import Enigma
 from enigma.plugboard import Plugboard
 
 @pytest.fixture
-def EnigmaMachine():
-    EnigmaMachine = Enigma(reflector=REFLECTOR_B, 
+def EnigmaMachinePlain():
+    EnigmaMachinePlain = Enigma(reflector=REFLECTOR_B, 
                         left_rotor=ROTOR_III, 
                         middle_rotor=ROTOR_II, 
                         right_rotor=ROTOR_I, 
@@ -14,11 +14,11 @@ def EnigmaMachine():
                         ring_positions="1 1 1",
                         plugboard=Plugboard()
                         )
-    return EnigmaMachine
+    return EnigmaMachinePlain
 
 @pytest.fixture
-def EnigmaMachine2():
-    EnigmaMachine2 = Enigma(reflector=REFLECTOR_B, 
+def EnigmaMachineSettings():
+    EnigmaMachineSettings = Enigma(reflector=REFLECTOR_B, 
                         left_rotor=ROTOR_III, 
                         middle_rotor=ROTOR_II, 
                         right_rotor=ROTOR_I, 
@@ -26,28 +26,59 @@ def EnigmaMachine2():
                         ring_positions="5 7 1",
                         plugboard=Plugboard()
                         )
-    return EnigmaMachine2
+    return EnigmaMachineSettings
 
 
-def test_rotors_all_notching(EnigmaMachine):
-    EnigmaMachine.left_rotor.rotor_position = EnigmaMachine.left_rotor.notch_position
-    EnigmaMachine.middle_rotor.rotor_position = EnigmaMachine.middle_rotor.notch_position
-    EnigmaMachine.right_rotor.rotor_position = EnigmaMachine.right_rotor.notch_position
+def test_rotors_all_notching(EnigmaMachinePlain):
+    EnigmaMachinePlain.left_rotor.rotor_position = EnigmaMachinePlain.left_rotor.notch_position
+    EnigmaMachinePlain.middle_rotor.rotor_position = EnigmaMachinePlain.middle_rotor.notch_position
+    EnigmaMachinePlain.right_rotor.rotor_position = EnigmaMachinePlain.right_rotor.notch_position
     
-    if EnigmaMachine.middle_rotor.is_in_turnover_pos():
-            EnigmaMachine.middle_rotor.notch()
-            EnigmaMachine.left_rotor.notch()
-    elif EnigmaMachine.left_rotor.is_in_turnover_pos():
-            EnigmaMachine.middle_rotor.notch()
-    EnigmaMachine.right_rotor.notch()
+    EnigmaMachinePlain.rotate()
 
     #ROTOR_III notch_position='W'
     #ROTOR_II notch_position='F'
     #ROTOR_I notch_position='R'
-    assert EnigmaMachine.left_rotor.rotor_position =='X'
-    assert EnigmaMachine.middle_rotor.rotor_position =='G'
-    assert EnigmaMachine.right_rotor.rotor_position =='S'
+    assert EnigmaMachinePlain.left_rotor.rotor_position =='X'
+    assert EnigmaMachinePlain.middle_rotor.rotor_position =='G'
+    assert EnigmaMachinePlain.right_rotor.rotor_position =='S'
 
-def test_encrypt_letter(EnigmaMachine2):
-    x=EnigmaMachine2.encipher('A')
-    assert x=='I'
+def test_right_rotor_notching(EnigmaMachinePlain):
+    EnigmaMachinePlain.right_rotor.rotor_position = EnigmaMachinePlain.right_rotor.notch_position
+    
+    EnigmaMachinePlain.rotate()
+
+    #ROTOR_III notch_position='W'
+    #ROTOR_II notch_position='F'
+    #ROTOR_I notch_position='R'
+    assert EnigmaMachinePlain.left_rotor.rotor_position =='A'
+    assert EnigmaMachinePlain.middle_rotor.rotor_position =='B'
+    assert EnigmaMachinePlain.right_rotor.rotor_position =='S'
+
+def test_middle_rotor_notching(EnigmaMachinePlain):
+    EnigmaMachinePlain.middle_rotor.rotor_position = EnigmaMachinePlain.middle_rotor.notch_position
+    EnigmaMachinePlain.right_rotor.rotor_position = EnigmaMachinePlain.right_rotor.notch_position
+    
+    EnigmaMachinePlain.rotate()
+
+    #ROTOR_III notch_position='W'
+    #ROTOR_II notch_position='F'
+    #ROTOR_I notch_position='R'
+    assert EnigmaMachinePlain.left_rotor.rotor_position =='B'
+    assert EnigmaMachinePlain.middle_rotor.rotor_position =='G'
+    assert EnigmaMachinePlain.right_rotor.rotor_position =='S'
+
+def test_encrypt_letter(EnigmaMachineSettings):
+    EnigmaMachineSettings.rotate()
+    char = "A"
+    temp = EnigmaMachineSettings.plugboard.map_plugs(char)
+    temp = EnigmaMachineSettings.right_rotor.encipher_forward(temp)
+    assert temp=='K'
+    temp = EnigmaMachineSettings.middle_rotor.encipher_forward(temp)
+    assert temp=='Q'
+    temp = EnigmaMachineSettings.left_rotor.encipher_forward(temp)
+    assert temp=='D'
+    temp = EnigmaMachineSettings.reflector.encipher(temp)
+    assert temp=='H'
+
+            

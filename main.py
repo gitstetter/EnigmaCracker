@@ -3,7 +3,15 @@ from libs.enigma.reflector import REFLECTOR_A, REFLECTOR_B, REFLECTOR_C
 from libs.enigma.enigma import Enigma
 from libs.enigma.plugboard import Plugboard
 
-EnigmaMachine = Enigma(reflector=REFLECTOR_B, rotor1=ROTOR_I, rotor2=ROTOR_II, rotor3=ROTOR_III, rotor_states="ABC" ,plugboard=Plugboard(plug_settings="AV BS CG DL FU HZ IN KM OW RX"))
-x=EnigmaMachine.encipher('E')
+EnigmaMachine2 = Enigma(reflector=REFLECTOR_B, 
+                       left_rotor=ROTOR_I, 
+                       middle_rotor=ROTOR_II, 
+                       right_rotor=ROTOR_III, 
+                       rotor_positions="A A A" ,
+                       ring_positions="5 7 1",
+                       plugboard=Plugboard()
+                       )
+
+x=EnigmaMachine2.encipher('E')
 
 print(x)
