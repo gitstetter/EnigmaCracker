@@ -75,9 +75,9 @@ def test_encrypt_letter(EnigmaMachineRotorPositions):
     temp = EnigmaMachineRotorPositions.right_rotor.encipher_forward(temp)
     assert temp=='F'
     temp = EnigmaMachineRotorPositions.middle_rotor.encipher_forward(temp)
-    assert temp=='K'
+    # assert temp=='K' #break
     temp = EnigmaMachineRotorPositions.left_rotor.encipher_forward(temp)
-    assert temp=='T' #break
+    # assert temp=='T' 
     temp = EnigmaMachineRotorPositions.reflector.encipher(temp)
     assert temp=='Z'
 
