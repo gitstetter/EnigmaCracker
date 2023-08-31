@@ -7,11 +7,11 @@ EnigmaMachine2 = Enigma(reflector=REFLECTOR_B,
                        left_rotor=ROTOR_III, 
                        middle_rotor=ROTOR_II, 
                        right_rotor=ROTOR_I, 
-                       rotor_positions="A A A" ,
-                       ring_positions="5 7 1",
+                       rotor_positions="1 1 1" ,
+                       ring_positions="1 1 1",
                        plugboard=Plugboard()
                        )
 
-x=EnigmaMachine2.encipher('A')
+x=EnigmaMachine2.encipher('Z')
 
 print(x)

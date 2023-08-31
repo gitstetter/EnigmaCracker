@@ -33,17 +33,6 @@ class Rotor:
         assert type(ring_position) is int
         assert ring_position < 27
         self.ring_position = ring_position
-        self.handle_ring_setting()
-
-
-    def handle_ring_setting(self) -> None:
-        assert type(self.ring_position) is int
-        assert self.ring_position < 27
-        # self.rotor_position = (self.rotor_position + self.ring_position) % 26
-        self.rotor_position = ((self.rotor_position + self.ring_position-1) % 26 
-                               if (self.rotor_position + self.ring_position) <=26 
-                               else (self.rotor_position + self.ring_position) % 26 )
-
 
     def encipher_forward(self, key: str) -> str:
         assert type(key) is str
@@ -52,10 +41,18 @@ class Rotor:
         assert key in UPPERCASE_LETTERS
         index = (ord(key) - ord("A"))
         #Account for current rotor position
-        rotor_shift = self.rotor_position
-        index = (index + rotor_shift-1)%26
-        letter = self.wiring[index]
+        rotor_shift = self.rotor_position - self.ring_position
+
+
+        wired = self.wiring[(index + rotor_shift +26)%26]
+        wired2 =(ord(wired)-rotor_shift +26)%26
+        letter = chr(wired2)
+        print(letter)
+        
         return letter
+    
+
+    # mapping[(k + shift + 26) % 26] - shift + 26) % 26;
 
 
     def encipher_backwards(self, key: str) -> str:

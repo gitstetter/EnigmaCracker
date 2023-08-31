@@ -22,9 +22,9 @@ class Enigma:
         self.ring_positions = ring_positions.split()
         assert len(self.ring_positions)==3
 
-        self.left_rotor.rotor_position = self.rotor_positions[0]
-        self.middle_rotor.rotor_position = self.rotor_positions[1]
-        self.right_rotor.rotor_position = self.rotor_positions[2]
+        self.left_rotor.rotor_position = int(self.rotor_positions[0])
+        self.middle_rotor.rotor_position = int(self.rotor_positions[1])
+        self.right_rotor.rotor_position = int(self.rotor_positions[2])
 
         self.left_rotor.set_ring_position(int(self.ring_positions[0]))
         self.middle_rotor.set_ring_position(int(self.ring_positions[1]))
