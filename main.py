@@ -7,11 +7,14 @@ EnigmaMachine2 = Enigma(reflector=REFLECTOR_B,
                        left_rotor=ROTOR_III, 
                        middle_rotor=ROTOR_II, 
                        right_rotor=ROTOR_I, 
-                       rotor_positions="A A A" ,
-                       ring_positions="5 7 1",
+                       rotor_positions="16 10 1" ,
+                       ring_positions="3 1 17",
                        plugboard=Plugboard()
                        )
 
-x=EnigmaMachine2.encipher('A')
+x=EnigmaMachine2.encipher('ABCDEFGHIJKLMNOPQRSTUVWXYZAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBABCDEFGHIJKLMNOPQRSTUVWXYZ')
 
+print('result is')
 print(x)
+
+# ROTOR_I.encipher_forward('B')

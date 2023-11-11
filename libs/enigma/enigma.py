@@ -22,9 +22,9 @@ class Enigma:
         self.ring_positions = ring_positions.split()
         assert len(self.ring_positions)==3
 
-        self.left_rotor.rotor_position = self.rotor_positions[0]
-        self.middle_rotor.rotor_position = self.rotor_positions[1]
-        self.right_rotor.rotor_position = self.rotor_positions[2]
+        self.left_rotor.rotor_position = int(self.rotor_positions[0])
+        self.middle_rotor.rotor_position = int(self.rotor_positions[1])
+        self.right_rotor.rotor_position = int(self.rotor_positions[2])
 
         self.left_rotor.set_ring_position(int(self.ring_positions[0]))
         self.middle_rotor.set_ring_position(int(self.ring_positions[1]))
@@ -53,28 +53,15 @@ class Enigma:
 
             self.rotate()
 
-            print(char)
             temp = self.plugboard.map_plugs(char)
-            print(temp)
-            print("right rotor at:",self.right_rotor.rotor_position)
             temp = self.right_rotor.encipher_forward(temp)
-            print(temp)
-            print("middle rotor at:",self.middle_rotor.rotor_position)
             temp = self.middle_rotor.encipher_forward(temp)
-            print(temp)
-            print("left rotor at:",self.left_rotor.rotor_position)
             temp = self.left_rotor.encipher_forward(temp)
-            print(temp)
             temp = self.reflector.encipher(temp)
-            print(temp)
             temp = self.left_rotor.encipher_backwards(temp)
-            print(temp)
             temp = self.middle_rotor.encipher_backwards(temp)
-            print(temp)
             temp = self.right_rotor.encipher_backwards(temp)
-            print(temp)
             temp = self.plugboard.map_plugs(temp)
-            print(temp)
             
             encoded_text += temp
         return encoded_text
