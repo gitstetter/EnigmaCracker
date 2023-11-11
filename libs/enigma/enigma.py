@@ -32,7 +32,7 @@ class Enigma:
 
     def rotate(self):
         #Notching rotors
-        if self.middle_rotor.is_in_turnover_pos() and self.right_rotor.is_in_turnover_pos():
+        if self.middle_rotor.is_in_turnover_pos():
             self.middle_rotor.notch()
             self.left_rotor.notch()
         elif self.right_rotor.is_in_turnover_pos():
