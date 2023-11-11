@@ -10,7 +10,7 @@ def EnigmaMachinePlain():
                         left_rotor=ROTOR_III, 
                         middle_rotor=ROTOR_II, 
                         right_rotor=ROTOR_I, 
-                        rotor_positions="A A A" ,
+                        rotor_positions="1 1 1" ,
                         ring_positions="1 1 1",
                         plugboard=Plugboard()
                         )
@@ -22,7 +22,7 @@ def EnigmaMachineRotorPositions():
                         left_rotor=ROTOR_III, 
                         middle_rotor=ROTOR_II, 
                         right_rotor=ROTOR_I, 
-                        rotor_positions="A B C" ,
+                        rotor_positions="1 2 3" ,
                         ring_positions="1 1 1",
                         plugboard=Plugboard()
                         )
@@ -30,43 +30,43 @@ def EnigmaMachineRotorPositions():
 
 
 def test_rotors_all_notching(EnigmaMachinePlain):
-    EnigmaMachinePlain.left_rotor.rotor_position = EnigmaMachinePlain.left_rotor.notch_position
-    EnigmaMachinePlain.middle_rotor.rotor_position = EnigmaMachinePlain.middle_rotor.notch_position
-    EnigmaMachinePlain.right_rotor.rotor_position = EnigmaMachinePlain.right_rotor.notch_position
+    EnigmaMachinePlain.left_rotor.rotor_position = ord(EnigmaMachinePlain.left_rotor.notch_position) - ord("A")
+    EnigmaMachinePlain.middle_rotor.rotor_position = ord(EnigmaMachinePlain.middle_rotor.notch_position) - ord("A")
+    EnigmaMachinePlain.right_rotor.rotor_position = ord(EnigmaMachinePlain.right_rotor.notch_position) - ord("A")
     
     EnigmaMachinePlain.rotate()
 
     #ROTOR_III notch_position='W'
     #ROTOR_II notch_position='F'
     #ROTOR_I notch_position='R'
-    assert EnigmaMachinePlain.left_rotor.rotor_position =='X'
-    assert EnigmaMachinePlain.middle_rotor.rotor_position =='G'
-    assert EnigmaMachinePlain.right_rotor.rotor_position =='S'
+    assert EnigmaMachinePlain.left_rotor.rotor_position ==24
+    assert EnigmaMachinePlain.middle_rotor.rotor_position ==7
+    assert EnigmaMachinePlain.right_rotor.rotor_position ==19
 
 def test_right_rotor_notching(EnigmaMachinePlain):
-    EnigmaMachinePlain.right_rotor.rotor_position = EnigmaMachinePlain.right_rotor.notch_position
+    EnigmaMachinePlain.right_rotor.rotor_position = ord(EnigmaMachinePlain.right_rotor.notch_position) - ord("A")
     
     EnigmaMachinePlain.rotate()
 
     #ROTOR_III notch_position='W'
     #ROTOR_II notch_position='F'
     #ROTOR_I notch_position='R'
-    assert EnigmaMachinePlain.left_rotor.rotor_position =='A'
-    assert EnigmaMachinePlain.middle_rotor.rotor_position =='B'
-    assert EnigmaMachinePlain.right_rotor.rotor_position =='S'
+    assert EnigmaMachinePlain.left_rotor.rotor_position ==1
+    assert EnigmaMachinePlain.middle_rotor.rotor_position ==2
+    assert EnigmaMachinePlain.right_rotor.rotor_position ==19
 
 def test_middle_rotor_notching(EnigmaMachinePlain):
-    EnigmaMachinePlain.middle_rotor.rotor_position = EnigmaMachinePlain.middle_rotor.notch_position
-    EnigmaMachinePlain.right_rotor.rotor_position = EnigmaMachinePlain.right_rotor.notch_position
+    EnigmaMachinePlain.middle_rotor.rotor_position = ord(EnigmaMachinePlain.middle_rotor.notch_position) - ord("A")
+    EnigmaMachinePlain.right_rotor.rotor_position = ord(EnigmaMachinePlain.right_rotor.notch_position) - ord("A")
     
     EnigmaMachinePlain.rotate()
 
     #ROTOR_III notch_position='W'
     #ROTOR_II notch_position='F'
     #ROTOR_I notch_position='R'
-    assert EnigmaMachinePlain.left_rotor.rotor_position =='B'
-    assert EnigmaMachinePlain.middle_rotor.rotor_position =='G'
-    assert EnigmaMachinePlain.right_rotor.rotor_position =='S'
+    assert EnigmaMachinePlain.left_rotor.rotor_position ==2
+    assert EnigmaMachinePlain.middle_rotor.rotor_position ==7
+    assert EnigmaMachinePlain.right_rotor.rotor_position ==19
 
 def test_encrypt_letter(EnigmaMachineRotorPositions):
     EnigmaMachineRotorPositions.rotate()

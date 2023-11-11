@@ -34,43 +34,27 @@ class Rotor:
         assert ring_position < 27
         self.ring_position = ring_position
 
-    def encipher_forward(self, key: str) -> str:
+    def encipher(self, key: str, mapping: str) -> str:
         assert type(key) is str
         assert len(key) == 1
         key = key.upper()
         assert key in UPPERCASE_LETTERS
-        index = (ord(key) - ord("A"))
-        #Account for current rotor position
+        index = (ord(key) - ord("A"))%26
         rotor_shift = self.rotor_position - self.ring_position
+        index = (index + rotor_shift)%26
+        letter = mapping[index]
+        letter = chr(ord("A") + (ord(letter) - ord("A") + 26 - rotor_shift) % 26)
 
-
-        wired = self.wiring[(index + rotor_shift +26)%26]
-        wired2 =(ord(wired)-rotor_shift +26)%26
-        letter = chr(wired2)
-        print(letter)
-        
         return letter
-    
 
-    # mapping[(k + shift + 26) % 26] - shift + 26) % 26;
-
+    def encipher_forward(self, key: str) -> str:
+        return self.encipher(key=key, mapping=self.wiring)
 
     def encipher_backwards(self, key: str) -> str:
-        assert type(key) is str
-        assert len(key) == 1
-        key = key.upper()
-        assert key in UPPERCASE_LETTERS
-        index = (ord(key) - ord("A"))
-        #Account for current rotor position
-        rotor_shift = self.rotor_position
-        index = (index + rotor_shift-1)%26
-        letter = self.rev_wiring[index]
-        return letter
+        return self.encipher(key=key, mapping=self.rev_wiring)
 
-    
     def notch(self) -> None:
         self.rotor_position = self.rotor_position + 1 if self.rotor_position <26 else 1
-
 
     def is_in_turnover_pos(self) -> bool:
         return self.rotor_position == ord(self.notch_position) - ord("A")
