@@ -30,6 +30,9 @@ class Enigma:
         self.middle_rotor.set_ring_position(int(self.ring_positions[1]))
         self.right_rotor.set_ring_position(int(self.ring_positions[2]))
 
+    def __setattr__(self, name: str, value) -> None:
+        self.__dict__[name] = value
+
     def rotate(self):
         #Notching rotors
         if self.middle_rotor.is_in_turnover_pos():
