@@ -30,7 +30,9 @@ class Rotor:
 
     def __str__(self) -> str:
         return self.name    
-
+    
+    def __len__(self):
+        return len(self.name)
 
     def set_ring_position(self, ring_position:int = 1):
         assert type(ring_position) is int
