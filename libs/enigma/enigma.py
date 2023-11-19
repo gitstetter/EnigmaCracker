@@ -56,7 +56,7 @@ class Enigma:
 
             self.rotate()
 
-            temp = self.plugboard.map_plugs(char)
+            temp = self.plugboard.map_plug(char)
             temp = self.right_rotor.encipher_forward(temp)
             temp = self.middle_rotor.encipher_forward(temp)
             temp = self.left_rotor.encipher_forward(temp)
@@ -64,17 +64,18 @@ class Enigma:
             temp = self.left_rotor.encipher_backwards(temp)
             temp = self.middle_rotor.encipher_backwards(temp)
             temp = self.right_rotor.encipher_backwards(temp)
-            temp = self.plugboard.map_plugs(temp)
+            temp = self.plugboard.map_plug(temp)
             
             encoded_text += temp
         return encoded_text
 
     def __str__(self):
         """Pretty display."""
-        return """
-        Reflector: {}
-        Left Rotor: {}
-        Middle Rotor: {}
-        Right Rotor: {}""".format(
-            self.reflector, self.left_rotor, self.middle_rotor, self.right_rotor
-        )
+        return f"""
+        Reflector: {self.reflector}
+        Left Rotor: {self.left_rotor}
+        Middle Rotor: {self.middle_rotor}
+        Right Rotor: {self.right_rotor}
+        Rotor Positions: {self.rotor_positions}
+        Ring Positions: {self.ring_positions}
+        Plug Settings: {self.plugboard}"""
