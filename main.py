@@ -12,7 +12,7 @@ EnigmaMachine2 = Enigma(reflector=REFLECTOR_B,
                        plugboard=Plugboard()
                        )
 
-x=EnigmaMachine2.encipher('ABCDEFGHIJKLMNOPQRSTUVWXYZAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBABCDEFGHIJKLMNOPQRSTUVWXYZ')
+x=EnigmaMachine2.encipher('XGOOXNCDRJDWALOOWFMJKXUUZTOJXLSSCWFU')
 
 print('result is')
 print(x)
