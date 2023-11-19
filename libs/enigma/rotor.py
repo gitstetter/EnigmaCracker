@@ -65,8 +65,8 @@ class Rotor:
         return self.rotor_position == ord(self.notch_position) - ord("A")
 
 
-ROTOR_I = Rotor(wiring="EKMFLGDQVZNTOWYHXUSPAIBRCJ", name="Rotor_I", ring_position=1, rotor_position=1, notch_position='R')
-ROTOR_II = Rotor(wiring="AJDKSIRUXBLHWTMCQGZNPYFVOE", name="Rotor_II", ring_position=1, rotor_position=1, notch_position='F')
-ROTOR_III = Rotor(wiring="BDFHJLCPRTXVZNYEIWGAKMUSQO", name="Rotor_III", ring_position=1, rotor_position=1, notch_position='W')
-ROTOR_IV = Rotor(wiring="ESOVPZJAYQUIRHXLNFTGKDCMWB", name="Rotor_IV", ring_position=1, rotor_position=1, notch_position='K')
-ROTOR_V = Rotor(wiring="VZBRGITYUPSDNHLXAWMJQOFECK", name="Rotor_V", ring_position=1, rotor_position=1, notch_position='A')
+ROTOR_I = Rotor(wiring="EKMFLGDQVZNTOWYHXUSPAIBRCJ", name="I", ring_position=1, rotor_position=1, notch_position='R')
+ROTOR_II = Rotor(wiring="AJDKSIRUXBLHWTMCQGZNPYFVOE", name="II", ring_position=1, rotor_position=1, notch_position='F')
+ROTOR_III = Rotor(wiring="BDFHJLCPRTXVZNYEIWGAKMUSQO", name="III", ring_position=1, rotor_position=1, notch_position='W')
+ROTOR_IV = Rotor(wiring="ESOVPZJAYQUIRHXLNFTGKDCMWB", name="IV", ring_position=1, rotor_position=1, notch_position='K')
+ROTOR_V = Rotor(wiring="VZBRGITYUPSDNHLXAWMJQOFECK", name="V", ring_position=1, rotor_position=1, notch_position='A')

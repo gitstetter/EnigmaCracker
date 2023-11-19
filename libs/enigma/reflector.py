@@ -36,9 +36,9 @@ class Reflector:
 
 
 
-REFLECTOR_A = Reflector(wiring="EJMZALYXVBWFCRQUONTSPIKHGD", name="Reflector_A")
-REFLECTOR_B = Reflector(wiring="YRUHQSLDPXNGOKMIEBFZCWVJAT", name="Reflector_B")
-REFLECTOR_C = Reflector(wiring="FVPJIAOYEDRZXWGCTKUQSBNMHL", name="Reflector_C")
+REFLECTOR_A = Reflector(wiring="EJMZALYXVBWFCRQUONTSPIKHGD", name="A")
+REFLECTOR_B = Reflector(wiring="YRUHQSLDPXNGOKMIEBFZCWVJAT", name="B")
+REFLECTOR_C = Reflector(wiring="FVPJIAOYEDRZXWGCTKUQSBNMHL", name="C")
 
 # REFLECTOR_A.encipher(key="z")
 # REFLECTOR_B.encipher(key="z")
