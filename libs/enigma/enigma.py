@@ -73,8 +73,8 @@ class Enigma:
         """Pretty display."""
         return """
         Reflector: {}
-        Rotor 1: {}
-        Rotor 2: {}
-        Rotor 3: {}""".format(
+        Left Rotor: {}
+        Middle Rotor: {}
+        Right Rotor: {}""".format(
             self.reflector, self.left_rotor, self.middle_rotor, self.right_rotor
         )
