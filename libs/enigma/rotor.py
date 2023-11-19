@@ -28,6 +28,9 @@ class Rotor:
     def __eq__(self, rotor) -> bool:
         return self.name == rotor.name
 
+    def __str__(self) -> str:
+        return self.name    
+
 
     def set_ring_position(self, ring_position:int = 1):
         assert type(ring_position) is int
