@@ -18,6 +18,12 @@ class Reflector:
 
     def __eq__(self, reflector) -> bool:
         return self.name == reflector.name
+    
+    def __str__(self) -> str:
+        return self.name    
+    
+    def __len__(self):
+        return len(self.name)
 
     def encipher(self, key: str):
         assert type(key) == str
