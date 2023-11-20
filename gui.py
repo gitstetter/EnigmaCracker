@@ -43,7 +43,6 @@ def set_enigma_params():
     left_rotor_pos=cbox_left_rotor_pos.get()
     middle_rotor_pos=cbox_middle_rotor_pos.get()
     right_rotor_pos=cbox_right_rotor_pos.get()
-    logging.info("middle rotor: "+ middle_rotor_pos)
 
     left_rotor_ring=cbox_left_rotor_ring.get()
     middle_rotor_ring=cbox_middle_rotor_ring.get()
@@ -113,10 +112,9 @@ lbl_plugs = tk.Label(frm_menu, text="Plug Settings:", justify="left")
 
 txt_plain = tk.Text(frm_text, height=10)
 
-lbl_encrypt_out = tk.Label(frm_encrypt_out, text="Encrypt your message above")
+lbl_encrypt_out = tk.Label(frm_encrypt_out, text="Encrypt your message above", justify="center")
 
-
-frm_enigma_setup.grid(row=0, column=0, sticky="n") #force the frame to expand vertically
+frm_enigma_setup.grid(row=0, column=0)
 
 cbox_reflector.grid(row=0, column=0)
 cbox_left_rotor.grid(row=0, column=1)
@@ -137,13 +135,13 @@ lbl_pos.grid(row=1, column=0)
 lbl_ring.grid(row=2, column=0)
 lbl_plugs.grid(row=3, column=0)
 
-btn_save.grid(row=4, column=3, sticky="ns", padx=5, pady=5) #expand horizontally in both directions and fill the entire frame
-btn_encipher.grid(row=4, column=4, sticky="ns", padx=5, pady=5) #expand horizontally in both directions and fill the entire frame
-txt_plain.grid(row=1, column=0, sticky="nsew") #force the frame to expand in every direction.
-lbl_encrypt_out.grid(row=1, column=1, sticky="nsew")
+btn_save.grid(row=4, column=3, padx=5, pady=5) #expand horizontally in both directions and fill the entire frame
+btn_encipher.grid(row=4, column=4, padx=5, pady=5) #expand horizontally in both directions and fill the entire frame
+txt_plain.grid(row=1, column=0) #force the frame to expand in every direction.
+lbl_encrypt_out.grid(row=1, column=1)
 
-frm_menu.grid(row=0, column=1)#, sticky="ns") #force the frame to expand vertically
-frm_text.grid(row=0, column=2)#, sticky="ns")
-frm_encrypt_out.grid(row=1, column=2)#, sticky="ns")
+frm_menu.grid(row=0, column=1, sticky="nsew") #force the frame to expand vertically
+frm_text.grid(row=0, column=2, sticky="nsew")
+frm_encrypt_out.grid(row=1, column=2, sticky="nsew")#, sticky="ns")
 
 window.mainloop()
