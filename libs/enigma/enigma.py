@@ -76,6 +76,6 @@ class Enigma:
         Left Rotor: {self.left_rotor}
         Middle Rotor: {self.middle_rotor}
         Right Rotor: {self.right_rotor}
-        Rotor Positions: {self.rotor_positions}
-        Ring Positions: {self.ring_positions}
+        Rotor Positions: {self.left_rotor.rotor_position, self.middle_rotor.rotor_position, self.right_rotor.rotor_position}
+        Ring Positions: {self.left_rotor.ring_position, self.middle_rotor.ring_position, self.right_rotor.ring_position}
         Plug Settings: {self.plugboard}"""
