@@ -7,7 +7,7 @@ EnigmaMachine2 = Enigma(reflector=REFLECTOR_B,
                        left_rotor=ROTOR_III, 
                        middle_rotor=ROTOR_II, 
                        right_rotor=ROTOR_I, 
-                       rotor_positions="16 10 1" ,
+                       rotor_positions="16 10 1",
                        ring_positions="3 1 17",
                        plugboard=Plugboard()
                        )
