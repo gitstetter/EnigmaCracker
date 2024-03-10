@@ -9,7 +9,7 @@ class Enigma:
     Represents an Enigma machine.
     """
 
-    def __init__(self, reflector:Reflector, left_rotor:Rotor, middle_rotor:Rotor, right_rotor:Rotor, plugboard:Plugboard, rotor_positions:str="A A A", ring_positions:str="1 1 1"):
+    def __init__(self, reflector:Reflector, left_rotor:Rotor, middle_rotor:Rotor, right_rotor:Rotor, plugboard:Plugboard, rotor_positions:str="1 1 1", ring_positions:str="1 1 1"):
 
         self.reflector = reflector
         self.left_rotor = left_rotor
