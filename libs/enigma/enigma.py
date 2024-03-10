@@ -30,6 +30,13 @@ class Enigma:
         self.middle_rotor.set_ring_position(int(self.ring_positions[1]))
         self.right_rotor.set_ring_position(int(self.ring_positions[2]))
 
+    @classmethod
+    def from_dict(cls, configs: dict):
+        """Alternative constructor for configs which have been exported by export_settings method"""
+        return cls(configs['reflector'],configs['left_rotor'],configs['middle_rotor'],configs['right_rotor'],
+                Plugboard(configs['plug_settings']),configs['rotor_positions'], configs['ring_positions'],)
+        
+
     def __setattr__(self, name: str, value) -> None:
         self.__dict__[name] = value
 
@@ -68,14 +75,24 @@ class Enigma:
             
             encoded_text += temp
         return encoded_text
+    
+    def export_settings(self) -> dict:
+        return {
+        'reflector': self.reflector,
+        'left_rotor': self.left_rotor,
+        'middle_rotor': self.middle_rotor,
+        'right_rotor': self.right_rotor,
+        'rotor_positions': f'{self.left_rotor.rotor_position} {self.middle_rotor.rotor_position} {self.right_rotor.rotor_position}',
+        'ring_positions': f'{self.left_rotor.ring_position} {self.middle_rotor.ring_position} {self.right_rotor.ring_position}',
+        'plug_settings': f'{self.plugboard}'
+        }
 
     def __str__(self):
         """Pretty display."""
-        return f"""
-        reflector: {self.reflector}
-        left_rotor: {self.left_rotor}
-        middle_rotor: {self.middle_rotor}
-        right_rotor: {self.right_rotor}
-        rotor_positions: '{self.left_rotor.rotor_position} {self.middle_rotor.rotor_position} {self.right_rotor.rotor_position}'
-        ring_positions: '{self.left_rotor.ring_position} {self.middle_rotor.ring_position} {self.right_rotor.ring_position}'
+        return f"""reflector: '{self.reflector}',
+        left_rotor: '{self.left_rotor}',
+        middle_rotor: '{self.middle_rotor}',
+        right_rotor: '{self.right_rotor}',
+        rotor_positions: '{self.left_rotor.rotor_position} {self.middle_rotor.rotor_position} {self.right_rotor.rotor_position}',
+        ring_positions: '{self.left_rotor.ring_position} {self.middle_rotor.ring_position} {self.right_rotor.ring_position}',
         plug_settings: '{self.plugboard}'"""
