@@ -72,10 +72,10 @@ class Enigma:
     def __str__(self):
         """Pretty display."""
         return f"""
-        Reflector: {self.reflector}
-        Left Rotor: {self.left_rotor}
-        Middle Rotor: {self.middle_rotor}
-        Right Rotor: {self.right_rotor}
-        Rotor Positions: {self.left_rotor.rotor_position, self.middle_rotor.rotor_position, self.right_rotor.rotor_position}
-        Ring Positions: {self.left_rotor.ring_position, self.middle_rotor.ring_position, self.right_rotor.ring_position}
-        Plug Settings: {self.plugboard}"""
+        reflector: {self.reflector}
+        left_rotor: {self.left_rotor}
+        middle_rotor: {self.middle_rotor}
+        right_rotor: {self.right_rotor}
+        rotor_positions: '{self.left_rotor.rotor_position} {self.middle_rotor.rotor_position} {self.right_rotor.rotor_position}'
+        ring_positions: '{self.left_rotor.ring_position} {self.middle_rotor.ring_position} {self.right_rotor.ring_position}'
+        plug_settings: '{self.plugboard}'"""

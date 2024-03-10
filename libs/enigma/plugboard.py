@@ -6,7 +6,7 @@ class Plugboard:
     """
 
     def __init__(self, plug_settings: str = "AA BB CC DD EE FF GG HH II JJ") -> None:
-
+        self.plug_input = plug_settings
         self.plug_settings = [(pair[0].upper(), pair[1].upper()) for pair in plug_settings.split(' ')]
 
         assert len(self.plug_settings)<=10
@@ -25,7 +25,7 @@ class Plugboard:
             self.mapping.update({pair1:pair0})
 
     def __str__(self):
-        return str(self.plug_settings)
+        return str(self.plug_input)
     
     def map_plug(self, key:str):
         return self.mapping[key]
