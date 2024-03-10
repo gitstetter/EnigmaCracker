@@ -24,10 +24,11 @@ class Plugboard:
             self.mapping.update({pair0:pair1})
             self.mapping.update({pair1:pair0})
 
+    def map_plug(self, key:str):
+        return self.mapping[key]
+    
     def __str__(self):
         return str(self.plug_input)
     
-    def map_plug(self, key:str):
-        return self.mapping[key]
 
 

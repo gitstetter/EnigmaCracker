@@ -4,16 +4,16 @@ import pytest
 
 def test_plugboard_correct_mapping():
     PLUGBOARD = Plugboard(plug_settings="AB FG DE")
-    assert PLUGBOARD.map_plugs('A')=='B'
-    assert PLUGBOARD.map_plugs('B')=='A'
-    assert PLUGBOARD.map_plugs('F')=='G'
-    assert PLUGBOARD.map_plugs('G')=='F'
-    assert PLUGBOARD.map_plugs('Z')=='Z'
+    assert PLUGBOARD.map_plug('A')=='B'
+    assert PLUGBOARD.map_plug('B')=='A'
+    assert PLUGBOARD.map_plug('F')=='G'
+    assert PLUGBOARD.map_plug('G')=='F'
+    assert PLUGBOARD.map_plug('Z')=='Z'
     
 def test_plugboard_no_settings():
     PLUGBOARD = Plugboard()
-    assert PLUGBOARD.map_plugs('A')=='A'
-    assert PLUGBOARD.map_plugs('B')=='B'
+    assert PLUGBOARD.map_plug('A')=='A'
+    assert PLUGBOARD.map_plug('B')=='B'
 
 def test_plugboard_duplicate_settings():
     with pytest.raises(AssertionError):
