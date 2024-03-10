@@ -1,6 +1,6 @@
-from . rotor import Rotor
-from . reflector import Reflector
-from . plugboard import Plugboard
+from .rotor import Rotor
+from .reflector import Reflector
+from .plugboard import Plugboard
 
 UPPERCASE_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
