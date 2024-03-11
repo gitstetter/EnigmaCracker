@@ -16,5 +16,3 @@ x=EnigmaMachine2.encipher('XGOOXNCDRJDWALOOWFMJKXUUZTOJXLSSCWFU')
 
 print('result is')
 print(x)
-
-# ROTOR_I.encipher_forward('B')
