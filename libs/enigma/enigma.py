@@ -56,7 +56,7 @@ class Enigma:
         plain_text = plain_text.upper()
         encoded_text = ""
         for char in plain_text:
-            if char is " ":
+            if char in [" ", ",",".",":",";","-","_","=","?","%","&","(",")","[","]"]:
                 encoded_text += char
                 continue
             assert char in UPPERCASE_LETTERS
