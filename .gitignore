@@ -9,3 +9,6 @@ Mappe1.xlsx
 log.txt
 gui.log
 libs/enigma/__pycache__/*
+*.pyc
+libs/enigma/__pycache__/*.pyc
+
