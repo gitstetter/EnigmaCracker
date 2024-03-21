@@ -1,6 +1,7 @@
 def calculate_ioc(text:str)->float:
     """
     Function to calculate the Index of Coincidence (IoC)
+    For random 26-letter text the IC is approximately 0.038; standard German shows about 0.07.
     """
     text:str = text.lower()
     
