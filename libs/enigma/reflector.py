@@ -25,7 +25,10 @@ class Reflector:
     def __len__(self):
         return len(self.name)
 
-    def encipher(self, key: str):
+    def encipher(self, key: str)->str:
+        """
+        Simulates the passing of a character through the reflector.
+        """
         assert type(key) == str
         assert len(key) == 1
         key = key.upper()
@@ -39,7 +42,3 @@ class Reflector:
 REFLECTOR_A = Reflector(wiring="EJMZALYXVBWFCRQUONTSPIKHGD", name="A")
 REFLECTOR_B = Reflector(wiring="YRUHQSLDPXNGOKMIEBFZCWVJAT", name="B")
 REFLECTOR_C = Reflector(wiring="FVPJIAOYEDRZXWGCTKUQSBNMHL", name="C")
-
-# REFLECTOR_A.encipher(key="z")
-# REFLECTOR_B.encipher(key="z")
-# REFLECTOR_C.encipher(key="z")

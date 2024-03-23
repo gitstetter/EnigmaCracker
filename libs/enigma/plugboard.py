@@ -2,7 +2,7 @@ UPPERCASE_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 class Plugboard:
     """
-    Represents a Plugboard that maps characters according to the plug setting of the enigma machine
+    Represents a Plugboard that maps characters according to the plug settings of the enigma machine
     """
 
     def __init__(self, plug_settings: str = "AA BB CC DD EE FF GG HH II JJ") -> None:
@@ -25,9 +25,15 @@ class Plugboard:
             self.mapping.update({pair1:pair0})
 
     def map_plug(self, key:str):
+        """
+        Maps a character to its counterpart according to a plug setting.
+        """
         return self.mapping[key]
     
     def __str__(self):
+        """
+        Pretty display.
+        """
         return str(self.plug_input)
     
 

@@ -6,7 +6,7 @@ UPPERCASE_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 class Enigma:
     """
-    Represents an Enigma machine.
+    Represents an Enigma machine to be used for encrypting messages.
     """
 
     def __init__(self, reflector:Reflector, left_rotor:Rotor, middle_rotor:Rotor, right_rotor:Rotor, plugboard:Plugboard, rotor_positions:str="1 1 1", ring_positions:str="1 1 1"):
@@ -32,7 +32,10 @@ class Enigma:
 
     @classmethod
     def from_dict(cls, configs: dict):
-        """Alternative constructor for configs which have been exported by export_settings method"""
+        """
+        Alternative constructor for configs which have been 
+        exported by export_settings method
+        """
         return cls(configs['reflector'],configs['left_rotor'],configs['middle_rotor'],configs['right_rotor'],
                 Plugboard(configs['plug_settings']),configs['rotor_positions'], configs['ring_positions'],)
         
@@ -40,8 +43,10 @@ class Enigma:
     def __setattr__(self, name: str, value) -> None:
         self.__dict__[name] = value
 
-    def rotate(self):
-        #Notching rotors
+    def rotate(self) -> None:
+        """
+        Rotates the three rotors according if a rotor is in turnover position.
+        """
         if self.middle_rotor.is_in_turnover_pos():
             self.middle_rotor.notch()
             self.left_rotor.notch()
@@ -51,7 +56,8 @@ class Enigma:
 
     def encipher(self, plain_text:str)->str:
         """
-        Encrypt a message according to enigma setup
+        Encrypts a message by passing each character given the current enigma 
+        setup through the plugboard, rotors, reflector and back.
         """
         plain_text = plain_text.upper()
         encoded_text = ""
@@ -77,6 +83,11 @@ class Enigma:
         return encoded_text
     
     def export_settings(self) -> dict:
+        """
+        Export the instance of the enigma machine as dictionary.
+        Rotor and ring positions, as well as the plugboard settings are persisted.
+        To be used with from_dict method.
+        """
         return {
         'reflector': self.reflector,
         'left_rotor': self.left_rotor,
@@ -88,7 +99,9 @@ class Enigma:
         }
 
     def __str__(self):
-        """Pretty display."""
+        """
+        Pretty display.
+        """
         return f"""reflector: '{self.reflector}',
         left_rotor: '{self.left_rotor}',
         middle_rotor: '{self.middle_rotor}',

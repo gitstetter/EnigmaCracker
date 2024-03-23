@@ -2,7 +2,7 @@ UPPERCASE_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 class Rotor:
     """
-    Represents a Rotor that maps characters pairwise and turns the rotor to the right notches
+    Represents a Rotor that maps characters pairwise and turns the rotor to the right notches.
     """
 
     def __init__(self, wiring:str=None, name:str=None, ring_position:int=1, rotor_position:int=1, notch_position:str=None):
@@ -35,11 +35,17 @@ class Rotor:
         return len(self.name)
 
     def set_ring_position(self, ring_position:int = 1):
+        """
+        Convenience method for setting the ring position af a rotor.
+        """
         assert type(ring_position) is int
         assert ring_position < 27
         self.ring_position = ring_position
 
     def encipher(self, key: str, mapping: str) -> str:
+        """
+        Maps a character to its counterpart and the defined mapping.        
+        """
         assert type(key) is str
         assert len(key) == 1
         key = key.upper()
@@ -53,15 +59,27 @@ class Rotor:
         return letter
 
     def encipher_forward(self, key: str) -> str:
+        """
+        Simulates the forward pass of a character through a rotor.
+        """
         return self.encipher(key=key, mapping=self.wiring)
 
     def encipher_backwards(self, key: str) -> str:
+        """
+        Simulates the backward pass of a character through a rotor.
+        """
         return self.encipher(key=key, mapping=self.rev_wiring)
 
     def notch(self) -> None:
+        """
+        Turns a rotor by one position.
+        """
         self.rotor_position = self.rotor_position + 1 if self.rotor_position <26 else 1
 
     def is_in_turnover_pos(self) -> bool:
+        """
+        Determines if a rotor is in turnover position for the next rotor.
+        """
         return self.rotor_position == ord(self.notch_position) - ord("A")
 
 
